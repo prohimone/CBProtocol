@@ -1,0 +1,16 @@
+dependencies:
+  # - <organization/repo>@<version>
+  - OpenZeppelin/openzeppelin-contracts@4.4.2
+  - prohimone/BoringSolidity@1.0.0
+  - prohimone/bentobox-sdk@1.0.2
+compiler:
+  solc:
+    remappings:
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.4.2'
+      - '@boringcrypto=prohimone/BoringSolidity@1.0.0'
+      - '@sushiswap=prohimone/bentobox-sdk@1.0.2'
+dotenv: .env
+networks:
+
+wallets:
+  from_key: ${PRIVATE_KEY}
