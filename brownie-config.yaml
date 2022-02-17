@@ -11,6 +11,8 @@ compiler:
       - '@sushiswap=prohimone/bentobox-sdk@1.0.2'
 dotenv: .env
 networks:
-
+  default: development
+  ftm-main-fork:
+    verify: False
 wallets:
   from_key: ${PRIVATE_KEY}

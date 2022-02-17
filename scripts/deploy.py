@@ -3,7 +3,7 @@ from scripts.helpful_scripts import deploy_mocks, get_account, LOCAL_BLOCKCHAIN_
 from web3 import Web3
 
 def deploy_fund_me():
-    account = get_account()
+    # account = get_account()
 
     # live chains
     # if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
@@ -14,10 +14,10 @@ def deploy_fund_me():
     #     deploy_mocks()
     #     price_feed_address = MockV3Aggregator[-1].address
     
-
+    WFTM = Contract("0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83")
     # BCCVault = BCVaultV1.deploy("0x27Ce41c3cb9AdB5Edb2d8bE253A1c6A64Db8c96d", BCEuro.address, price_feed_address, price_feed_address2, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"])
-
-    # print(f"BCC Token Contract deployed to: {BCC.address}")
+    BentoBox = BentoBoxV1.deploy(WFTM, {"from":accounts[0]})
+    print(f"BentoBox deployed to: {BentoBox.address}")
     # print(f"BCC Vault Contract deployed to: {BCCVault.address}")
     
 
