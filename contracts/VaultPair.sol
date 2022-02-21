@@ -12,10 +12,10 @@ import "@boringcrypto/contracts/libraries/BoringERC20.sol";
 import "@sushiswap/contracts/IBentoBoxV1.sol";
 import "../interfaces/IOracle.sol";
 import "../interfaces/ISwapper.sol";
+import "../interfaces/IVaultPairData.sol";
 
 
-
-contract VaultPair is ERC20, BoringOwnable, IMasterContract {
+contract VaultPair is BoringOwnable, IMasterContract, ERC20 {
     using BoringMath for uint256;
     using BoringMath128 for uint128;
     using RebaseLibrary for Rebase;
@@ -24,6 +24,7 @@ contract VaultPair is ERC20, BoringOwnable, IMasterContract {
     // Immutables (for MasterContract and all clones)
     IBentoBoxV1 public immutable bentoBox;
     VaultPair public immutable masterContract;
+    // IVaultPairData public vaultPairData;
 
     // MasterContract variables
     address public feeTo;
@@ -104,9 +105,10 @@ contract VaultPair is ERC20, BoringOwnable, IMasterContract {
     uint256 private constant BORROW_OPENING_FEE_PRECISION = 1e5;
 
     /// The constructor is only used for the initial master contract. Subsequent clones are initialised via `init`.
-    constructor(IBentoBoxV1 bentoBox_) public {
-        bentoBox = bentoBox_;
+    constructor(IBentoBoxV1 _bentoBox) public {
         masterContract = this;
+        bentoBox = _bentoBox;
+        // vaultPairData = _vaultPairData;
     }
 
     /// @notice Serves as the constructor for clones, as clones can't have a regular constructor
